@@ -25,7 +25,7 @@ YANG_RECORD_MODELS := infra_fdu infra_atomic_entity infra_entity
 
 PYTHON_MODELS := $(addsuffix .py, $(YANG_DESC_MODELS))
 PYTHON_RECORDS := $(addsuffix .py, $(YANG_RECORD_MODELS))
-
+RECORD_JSONSCHEMAS := $(addsuffix .jsonschema, $(YANG_RECORD_MODELS))
 PYTHON_JSONSCHEMAS := $(addsuffix .jsonschema, $(YANG_DESC_MODELS))
 YANG_DESC_TREES := $(addsuffix .tree.txt, $(YANG_DESC_MODELS))
 YANG_DESC_JSTREES := $(addsuffix .html, $(YANG_DESC_MODELS))
@@ -40,7 +40,7 @@ Q?=@
 
 PYANG_OPTIONS := -Werror
 
-all: $(PYTHON_MODELS) pyang-json-schema-plugin $(PYTHON_RECORDS) pyang-json-schema-plugin $(PYTHON_JSONSCHEMAS) clean-plugin pyang-json-schema-plugin $(PYTHON_JSONSCHEMAS) trees
+all: pyang-json-schema-plugin $(PYTHON_MODELS)  $(PYTHON_RECORDS) $(PYTHON_JSONSCHEMAS) $(RECORD_JSONSCHEMAS) trees clean-plugin
 
 trees: $(YANG_DESC_TREES) $(YANG_DESC_JSTREES) $(YANG_RECORD_TREES) $(YANG_RECORD_JSTREES)
 
